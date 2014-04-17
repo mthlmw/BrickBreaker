@@ -1,0 +1,7 @@
+C:\gamedev\BrickBreaker\BrickBreaker\BrickBreaker\bin\x86\Debug\BrickBreaker.exe
+C:\gamedev\BrickBreaker\BrickBreaker\BrickBreaker\bin\x86\Debug\BrickBreaker.pdb
+C:\gamedev\BrickBreaker\BrickBreaker\BrickBreaker\obj\x86\Debug\BrickBreaker.csprojResolveAssemblyReference.cache
+C:\gamedev\BrickBreaker\BrickBreaker\BrickBreaker\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\gamedev\BrickBreaker\BrickBreaker\BrickBreaker\obj\x86\Debug\BrickBreaker.exe
+C:\gamedev\BrickBreaker\BrickBreaker\BrickBreaker\obj\x86\Debug\BrickBreaker.pdb
+C:\gamedev\BrickBreaker\BrickBreaker\BrickBreaker\bin\x86\Debug\Content\Aang.xnb

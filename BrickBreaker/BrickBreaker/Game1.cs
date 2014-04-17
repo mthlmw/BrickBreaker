@@ -18,6 +18,11 @@ namespace BrickBreaker
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D aang;
+        KeyboardState oldKeyboardState,
+                      currentKeyboardState;
+        Vector2 spritePosition;
+        const int MOVE_SPEED = 4;
 
         public Game1()
         {
@@ -34,6 +39,8 @@ namespace BrickBreaker
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            currentKeyboardState = new KeyboardState();
+            spritePosition = new Vector2(100.0f);
 
             base.Initialize();
         }
@@ -48,6 +55,7 @@ namespace BrickBreaker
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            aang = Content.Load<Texture2D>("aang");
         }
 
         /// <summary>
@@ -66,11 +74,33 @@ namespace BrickBreaker
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
             // TODO: Add your update logic here
+            oldKeyboardState = currentKeyboardState;
+            currentKeyboardState = Keyboard.GetState();
+
+            if (currentKeyboardState.IsKeyDown(Keys.Left))
+            {
+                spritePosition.X += -MOVE_SPEED;
+            }
+            if (currentKeyboardState.IsKeyDown(Keys.Right))
+            {
+                spritePosition.X += MOVE_SPEED;
+            }
+            if (currentKeyboardState.IsKeyDown(Keys.Up))
+            {
+                spritePosition.Y += -MOVE_SPEED;
+            }
+            if (currentKeyboardState.IsKeyDown(Keys.Down))
+            {
+                spritePosition.Y += MOVE_SPEED;
+            }
+
+            wallCheck();
 
             base.Update(gameTime);
         }
@@ -81,11 +111,36 @@ namespace BrickBreaker
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.ForestGreen);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            spriteBatch.Draw(aang, spritePosition, Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        //Makes sure your character doesn't run past the edge of the screen.
+        private void wallCheck() {
+
+            if (spritePosition.X + aang.Width > graphics.PreferredBackBufferWidth)
+            {
+                spritePosition.X = (graphics.PreferredBackBufferWidth - aang.Width);
+            }
+            else if (spritePosition.X < 0)
+            {
+                spritePosition.X = 0;
+            }
+
+            if (spritePosition.Y + aang.Height > graphics.PreferredBackBufferHeight)
+            {
+                spritePosition.Y = (graphics.PreferredBackBufferHeight - aang.Height);
+            }
+            else if (spritePosition.Y < 0)
+            {
+                spritePosition.Y = 0;
+            }
         }
     }
 }
